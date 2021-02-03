@@ -31,17 +31,20 @@
                 <a href="#">Sale</a>
             </li>
         </ul>
+        <span><i class="fas fa-cart-plus"></i>
+        </span>
     </div>
 </nav>
 <section class="search-banner">
     <div class="formDiv">
         <form id="form" class="form">
-            <input type="text" id="search-input" class="search-input" name="search" placeholder="Search" autocomplete="off">
+            <input type="text" id="search-input" class="search-input" name="search" placeholder="Search for brand, size, color...">
             
-            <!--<div id="clear" class="none button clear" role="button" tabindex="0" aria-label="Clear search terms">
+            <div id="clear" class="none button clear" role="button" tabindex="0">
                 <i class="fas fa-times"></i>
-            </div>  --> 
-            <button id="searchButton" class="button searchButton" aria-label="submit button"><i class="fas fa-search"></i></button>
+            </div>  
+
+            <button id="searchButton" class="button searchButton" type="submit"><i class="fas fa-search"></i></button>
         </form>
     </div>
     <div class="banner">
@@ -51,59 +54,111 @@
 
 <section class="results-section">
     <div class="container">
-<div id="listingTable" class="listingTable">
-    <button id="btn_prev" class="btn-list">Prev</button>
-    page: <span id="page"></span>
-    <button id="btn_next" class="btn-list">Next</button>
-    
+        <div id="listingTable" class="pageButtons initial">
+            <button id="btn_prev" class="prevPageButton btn-list">Prev</button>
+            1 2 3 4<span id="page"></span>
+            <button id="btn_next" class="btn-list">Next</button>
 </div> 
 
-<div class="sideBar">
-    <ul>
-        <h3 class="sideBar-title">Feature Products</h3>
-            <li>New Arrivals</li>
-            <li>Best Sellers</li>
-        <h4>Filters</h4>
-             <ul>
-                <p class="sideBar-title">Product Type</p>
-                <span>
-                <div class="dropdown">
-                    <p>Price</p>
-                    <span class="chevron"><button class="dropdown-btn"><i class="fafa-chevron-down"></i></button></i></span>
-                </div>
-                <span class="dropdown-details">
-                <div><input type="checkbox" name="zero"><label for="zero">$0 - $49.99
-                    </label></div>
-                <div><input type="checkbox" name="fifty"><label for="fifty">$50 - $99.99</label></div>
-                <div><input type="checkbox" name="hundred"><label for="fifty">$100 - $149.99</label></div>
-                     </span>
-                    </span>
-                        </ul>
-                        <li>Activity</li>
-                        <li>Color</li>
-                        <li>price</li>
-                        <li>Rating</li>
-                    <h4>Clothing</h4> 
-                        <li>Dresses</li>
-                        <li>Tops</li>
-                        <li>Tee & Tanks</li>
-                        <li>Sweatshirts & Hoodies</li>
-                        <li>Shorts</li>
-                        <li>Skirts</li>
-                </ul>
-            </div>
+<div class="sidebar">
+   <h3>Featured Products</h3>
+    <ul class="features">
+        <li>
+            <a href="">Spring Deals</a>
+        </li>
+        <li>
+            <a href="">New Arrivals</a>
+        </li>
+        <li>
+            <a href="">Best Sellers</a>
+        </li>
+    </ul>
 
-            <div id="results" class="results" aria-live="assertive"></div>
-        
-            <div id="cards" class="cards initial">
-                <!--<div id="card" class="card">
-                    <img class="card-image" src="./images/2369_copyright_reddressboutique_2017__large.jpg" alt="result image">
-                    0</p>
-                    </div>
-                </div>-->
+<!-- Dropdown Filters-->
+    <h4>Filters</h4>
+    <div>
+        <button type="button" class="collapsible">Price
+            <span class="plus">+</i></span></button>
+        </button>
+        <div class="content">
+            <div>
+                <input type="checkbox" name="zero">
+                <label for="zero">$0 - $49.99</label>
             </div>
-       </div>
-    </section>
+        <div>
+            <input type="checkbox" name="fifty"><label for="fifty">$50 - $99.99</label>
+        </div>
+        <div>
+            <input type="checkbox" name="hundred"><label for="fifty">$100 - $149.99</label>
+        </div>
+        </div>
+    </div>
+  
+    <div>
+        <button type="button" class="collapsible">Activity
+            <span class="plus">+</i></span></button>
+        </button>
+        <div class="content">
+            <div>
+                <input type="checkbox" name="zero">
+                <label for="zero">Travel</label>
+            </div>
+        <div>
+            <input type="checkbox" name="fifty"><label for="fifty">Activewear</label>
+        </div>
+        <div>
+            <input type="checkbox" name="hundred"><label for="fifty">Lounge</label>
+        </div>
+        </div>
+    </div>
+
+    <div>
+        <button type="button" class="collapsible">Color
+            <span class="plus">+</i></span></button>
+        </button>
+        <div class="content colors">
+            <button class="color black"></button> 
+            <button class="color red"></button>  
+            <button class="color blue"></button>  
+            <button class="color yellow"></button>  
+            <button class="color white"></button>  
+            <button class="color gray"></button>  
+        </div>
+    </div>
+    
+    
+    <ul class="clothing">
+        <h4>Clothing Type</h4>
+        <li>
+            <a href="">Dresses</a>
+        </li>
+        <li>
+            <a href="">Tops</a>
+        </li>
+        <li>
+            <a href="">Sweaters</a>
+        </li>
+        <li>
+            <a href="">Shorts</a>
+        </li>
+        <li>
+            <a href="">Skirts</a>
+        </li>
+    </ul>
+         
+</div>
+           
+    <!--div for results-->
+    <div id="cards" class="cards initial">
+    </div>
+</div>
+
+    <div id="listingTable" class="pageButtons initial bottom-btns">
+        <button id="btn_prev" class="prevPageButton btn-list prev-bottom">Prev</button>
+        1 2 3 4 <span id="page" class="page"></span>
+        <button id="btn_next" class="btn-list next-bottom">Next</button>
+    </div> 
+</section>
         
    
 <script src="./script.js"></script>
