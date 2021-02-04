@@ -1,20 +1,21 @@
 //Initialize Variables
 const searchForm = document.querySelector('form');
 const input = document.querySelector('#search-input');
+const searchButton = document.querySelector('.searchButton');
 const cardResults = document.querySelector('#cards');
-// const pageForward = document.querySelectorAll('.btn-next');
-// const pageBack = document.querySelectorAll('.btn-prev');
+const pageButtons = document.querySelectorAll('.pageButtons');
+const currentPageNumberSpan = document.querySelectorAll('.currentPage'); 
+const pageNumbersSpan = document.querySelector('.pageNumbers');
 const nextPageButton = document.querySelectorAll('.nextPageButton');
-//const prevPageButton = document.querySelectorAll('.prevPageButton');
-const pageButtons = document.querySelectorAll('.pageButtons'); 
-console.log(pageButtons)
-const pageSpan = document.getElementById('page');//once changed to class, # is no show
+const prevPageButton = document.querySelectorAll('.prevPageButton');
+const featuredItemDisplay = document.querySelector('.feature');
 
 let pageState = {};
 let currentPage = 1;
 
 //Setup Event Listeners
 searchForm.addEventListener('submit', search);
+searchButton.addEventListener('submit', search);
 
 pageButtons.forEach((button) =>
   button.addEventListener('click', handlePageButtonClick),
@@ -22,12 +23,14 @@ pageButtons.forEach((button) =>
 
 //JS Methods
 
+//Performs our main search submit event
 function search(e) {
   e.preventDefault();
   currentPage = 1;
   fetchAPI(currentPage);
 }
 
+//Fetches Data from the API and sets our data to be used in other functions
 async function fetchAPI(currentPage) {
   let searchInput = document.getElementById('search-input').value;
   const searchURL = `http://api.searchspring.net/api/search/search.json?siteId=scmq7n&q=${searchInput}&resultsFormat=native&page=${currentPage}`;
@@ -36,76 +39,85 @@ async function fetchAPI(currentPage) {
     .catch((err) => console.log(`Error ${err}`));
 
   generateHTML(data.results);
+
+  //set Our pagination data to var called pageState
   pageState = data.pagination;
-  pageSpan.innerHTML = currentPage;
+  createPageNumbers();
+
+  //set current page number to display in between page forward/back buttons
+  currentPageNumberSpan.forEach((spanArea) => {
+    spanArea.innerHTML = currentPage;
+  });
 }
 
+//inject cards into page after results have been returned
 function generateHTML(searchResults) {
-  // console.log(searchResults);
-  pageButtons.style.document.display = "flex";
-  
   let generatedHTML = '';
 
   searchResults.map((singleResult) => {
     const { thumbnailImageUrl, title, msrp, price } = singleResult;
     let msrpPrice = +msrp;
     let salePrice = +price;
-    // if (singleResult.title.length > 10) {
-    //   singleResult.title = `${singleResult.title.substr(0, 10)}...`;
-    // }
 
     generatedHTML += `<div class="card">
-    
-           <img  class="card-image" src="${thumbnailImageUrl}" alt="result image">
-           <div class="details">
-          <p class="product">${title}</p>
-          ${
-            msrp
-              ? `<p class=${
-                  msrpPrice > salePrice ? 'msrp-strike' : 'msrp'
-                }>$${msrpPrice.toFixed(2)}</p>`
-              : ''
-          }
-           <p class="sale">$${salePrice.toFixed(2)}</p>
+            <img  class="card-image" src="${thumbnailImageUrl}" alt="result image">
+        <div class="details">
+            <p class="product">${title}</p>
+             ${
+               msrp
+                 ? `<p class=${
+                     msrpPrice > salePrice ? 'msrp-strike' : 'msrp'
+                   }>$${msrpPrice.toFixed(2)}</p>`
+                 : ''
+             }
+            <p class="sale">$${salePrice.toFixed(2)}</p>
            </div>
         </div>`;
   });
   cardResults.innerHTML = generatedHTML;
-  //buttonDisable();
+
+  disablePageButtons();
 }
 
-//Page Click Functionality
-// function buttonDisable() {
-// console.log(pageState);
-// if(currentPage === 1) {
-//     const document.querySelectorAll('.prevPageButton').display = 'none';
+const select = document.getElementsByTagName('dropdownPages');
+function createPageNumbers() {
+  let generatePageNumbers = '';
+  for (let i = 0; i <= pageState.totalPages; i++) {
+    generatePageNumbers += 
+    `<a class='page-numbers' href='#'>${i}</a>`
+    // `<option value="${i}">${i}</option> `
+    console.log(currentPage);
+    ;
 
-// }
-// }
+  }
+  select.innerHTML = generatePageNumbers;
+  pageNumbersSpan.innerHTML = generatePageNumbers;
+  pageNumbersSpan.addEventListener('click', pageNumberClick);
+}
+
+//Main page forward/back button event firing
+function pageNumberClick(e) {
+    currentPage = e.target.innerHTML;
+  if (currentPage !== e.target.innerHTML) {
+    fetchAPI(currentPage);
+  } 
+
+}
 
 function handlePageButtonClick(e) {
-        // const prevPageButton = document.querySelectorAll('.prevPageButton')
-        // prevPageButton.forEach(first => {
-        //     if (currentPage === 1) {
-        //         console.log('page one');
-        //         prevPageButton.style.display = "none";
-        //     }
-        // })
-    if (e.target.innerHTML === 'Next') {
-      pageClickForward();
-    } else {
-      pageClickBack();
-    }
+  if (e.target.innerHTML === 'Next') {
+    pageClickForward();
+  } else {
+    pageClickBack();
   }
+}
 
 function pageClickForward() {
-   
-
-   if (currentPage < pageState.totalPages) 
+  if (currentPage < pageState.totalPages) {
     currentPage++;
     fetchAPI(currentPage);
   }
-
+}
 
 function pageClickBack() {
   if (currentPage !== 1) {
@@ -114,34 +126,40 @@ function pageClickBack() {
   }
 }
 
-function showButtons() {
-    if(pageButtons === "none") {
-        pageButtons.style.display = "flex";
-    } else {
-        pageButtons.style.display = "none";
-    }
-}
-//error display is undefined
-// function removeClass() {
-//     pageButtons.stye.display = "none";
-// }
+function disablePageButtons() {
+  //Page button disable and show functionality
+  pageButtons.forEach((button) => {
+    button.classList.remove('initial');
 
-const collapsible = document.getElementsByClassName("collapsible");
-var i;
-
-for (i = 0; i < collapsible.length; i++) {
-    collapsible[i].addEventListener("click", function() {
-    this.classList.toggle("active");
-    if(this.firstElementChild.innerHTML === "+"){
-        this.firstElementChild.innerHTML = '-';
-    } else{
-        this.firstElementChild.innerHTML = '+'
-    }
-    let content = this.nextElementSibling;
-    if (content.style.display === "block") {
-      content.style.display = "none";
+    if (currentPage === 1) {
+      prevPageButton.forEach((eachPrevButton) => {
+        eachPrevButton.disabled = true;
+      });
     } else {
-      content.style.display = "block";
+      prevPageButton.forEach((eachPrevButton) => {
+        eachPrevButton.disabled = false;
+      });
+    }
+    if (currentPage === pageState.totalPages) {
+      nextPageButton.forEach((eachNextButton) => {
+        eachNextButton.disabled = true;
+      });
+    } else {
+      nextPageButton.forEach((eachNextButton) => {
+        eachNextButton.disabled = false;
+      });
     }
   });
 }
+
+//Toggle Sidebar Option Menu and Selections
+const collapsible = document.querySelectorAll('.plus');
+collapsible.forEach((item) => {
+  const { nextElementSibling } = item.parentNode;
+  item.addEventListener('click', function () {
+    item.classList.toggle('active');
+    item.innerHTML === '+'
+      ? ((item.innerHTML = '-'), (nextElementSibling.style.display = 'block'))
+      : ((item.innerHTML = '+'), (nextElementSibling.style.display = 'none'));
+  });
+});
