@@ -6,10 +6,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
     <title>Document</title>
 <link rel="stylesheet" href="style.css">
-<!--<script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>-->
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Karla:wght@200;400;500&family=Lora:wght@400;500&display=swap" rel="stylesheet">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
     <nav class="navbar">
@@ -35,48 +33,63 @@
         </span>
     </div>
 </nav>
-<section class="search-banner">
-    <div class="formDiv">
-        <form id="form" class="form">
-            <input type="text" id="search-input" class="search-input" name="search" placeholder="Search for brand, size, color...">
-            
-            <div id="clear" class="none button clear" role="button" tabindex="0">
-                <i class="fas fa-times"></i>
-            </div>  
+<div class="background-img">
+    <img src="images/bg-tablet-pattern.svg">
+</div>
 
-            <button id="searchButton" class="button searchButton" type="submit"><i class="fas fa-search"></i></button>
-        </form>
-    </div>
+<section class="search-banner">
+   
+    <form id="form" class="form">
+        <input type="text" id="search-input" class="search-input" name="search" placeholder="Search for brand, size, color...">
+            <button id="searchButton" class="button searchButton" type="submit">
+                <i class="fas fa-search"></i>
+            </button>
+    </form>
+    
     <div class="banner">
-    <img class="banner-img" src="./images/unsplash-1.jpeg">
+        <img class="banner-img" src="./images/unsplash-1.jpeg">
     </div>
 </section>
 
 <section class="results-section">
-    <div class="container">
+    <div class="results-container">
         <div id="listingTable" class="pageButtons initial">
-            <button id="btn_prev" class="prevPageButton btn-list">Prev</button>
-            1 2 3 4<span id="page"></span>
-            <button id="btn_next" class="btn-list">Next</button>
-</div> 
-
-<div class="sidebar">
-   <h3>Featured Products</h3>
-    <ul class="features">
-        <li>
-            <a href="">Spring Deals</a>
-        </li>
-        <li>
-            <a href="">New Arrivals</a>
-        </li>
-        <li>
-            <a href="">Best Sellers</a>
-        </li>
-    </ul>
+            <button  class="prevPageButton btn-list">Prev</button>
+        <div class="dropdown">
+            <p class="dropdown-text">Pages
+                <i class="fa fa-caret-down"></i>
+            </p>
+        <div class="dropdown-content">
+            <p>Select a Page</p>
+        <div class="numbers">
+            <span class="pageNumbers"></span>
+        </div>
+        </div> 
+    </div>
+            
+        <p class="page">Page: <span class="currentPage">
+            </span>
+        </p>
+            <button  class="nextPageButton btn-list">Next
+            </button>
+    </div> 
+<!-- Sidebar -->
+    <div class="sidebar">
+        <h3>Featured Products</h3>
+            <ul class="features">
+                <li>
+                    <a href="#">Spring Deals</a>
+                </li>
+                <li>
+                    <a href="#">New Arrivals</a>
+                </li>
+                <li>
+                    <a href="#">Best Sellers</a>
+                </li>
+            </ul>
 
 <!-- Dropdown Filters-->
     <h4>Filters</h4>
-    <div>
         <button type="button" class="collapsible">Price
             <span class="plus">+</i></span></button>
         </button>
@@ -91,23 +104,22 @@
         <div>
             <input type="checkbox" name="hundred"><label for="fifty">$100 - $149.99</label>
         </div>
-        </div>
     </div>
-  
+    
     <div>
         <button type="button" class="collapsible">Activity
             <span class="plus">+</i></span></button>
         </button>
         <div class="content">
             <div>
-                <input type="checkbox" name="zero">
-                <label for="zero">Travel</label>
+                <input type="checkbox" name="travel">
+                <label for="travel">Travel</label>
             </div>
         <div>
-            <input type="checkbox" name="fifty"><label for="fifty">Activewear</label>
+            <input type="checkbox" name="activewear"><label for="activewear">Activewear</label>
         </div>
         <div>
-            <input type="checkbox" name="hundred"><label for="fifty">Lounge</label>
+            <input type="checkbox" name="lounge"><label for="lounge">Lounge</label>
         </div>
         </div>
     </div>
@@ -126,41 +138,49 @@
         </div>
     </div>
     
-    
     <ul class="clothing">
         <h4>Clothing Type</h4>
         <li>
-            <a href="">Dresses</a>
+            <a href="#">Dresses</a>
         </li>
         <li>
-            <a href="">Tops</a>
+            <a href="#">Tops</a>
         </li>
         <li>
-            <a href="">Sweaters</a>
+            <a href="#">Sweaters</a>
         </li>
         <li>
-            <a href="">Shorts</a>
+            <a href="#">Shorts</a>
         </li>
         <li>
-            <a href="">Skirts</a>
+            <a href="#">Skirts</a>
         </li>
-    </ul>
-         
+    </ul>        
 </div>
            
-    <!--div for results-->
+<!-- Card Results -->
     <div id="cards" class="cards initial">
     </div>
-</div>
 
-    <div id="listingTable" class="pageButtons initial bottom-btns">
-        <button id="btn_prev" class="prevPageButton btn-list prev-bottom">Prev</button>
-        1 2 3 4 <span id="page" class="page"></span>
-        <button id="btn_next" class="btn-list next-bottom">Next</button>
-    </div> 
+
+<!--<div id="home" class="cards feature">
+    <div class="card feature-card">
+        <img class="feature-image" src="./images/2369_copyright_reddressboutique_2017__large.jpg" alt="result image">
+        <div class="details">
+            <p class="product">Spring Favorites</p>
+        </div>
+    </div>
+</div>-->
+
 </section>
-        
-   
+<div id="listingTable" class="pageButtons initial bottom-btns">
+    <button  class="prevPageButton btn-list prev-bottom">Prev</button>
+        <p class="page-bottom">Page: 
+            <span class="currentPage"></span>
+        </p>
+    <button class="nextPageButton btn-list next-bottom">Next</button>
+</div> 
+
 <script src="./script.js"></script>
 </body>
 </html>
