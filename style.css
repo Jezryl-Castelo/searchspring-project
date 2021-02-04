@@ -354,7 +354,6 @@ input[type='checkbox'] {
     margin-bottom: 6px;
     font-weight: 500;
 }
-
 .pageNumbers {
     max-width: 180px;
     height: auto;
@@ -366,25 +365,15 @@ input[type='checkbox'] {
     border-radius: 4px;
     box-shadow: 0 4px 4px rgba(196, 196, 196, 78%);
 }
-.dropdown-text:hover,
-.pageNumbers a:hover {
-    color: var(--mint);
-    font-weight: 500;
-}
 
 .dropdown:hover
 .dropdown-content {
     display: block;
-    /*grid-template-areas: 
-    "button"
-    "numbers";*/
 }
 .pageNumbers a {
    padding: 5px; 
 }
-
 .page {
-    
     padding-left: 100px;
     padding-top: 8px;  
 }
@@ -405,6 +394,11 @@ input[type='checkbox'] {
   .product:hover {
     text-decoration: underline;
   }
+  .dropdown-text:hover,
+.pageNumbers a:hover {
+    color: var(--mint);
+    font-weight: 500;
+}
 /*@media and (max-width: 736px) {
     .nav-list {
         flex-direction: column;
