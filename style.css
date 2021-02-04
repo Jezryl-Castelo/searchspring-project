@@ -336,7 +336,6 @@ input[type='checkbox'] {
 .dropdown-text {
     display: flex;
     width: 90px;
-    background-color: white;
     border: 1px solid var(--dk-gray);
     font-size: 1rem;
     margin-bottom: 6px;

@@ -32,19 +32,16 @@ function search(e) {
 
 //Fetches Data from the API and sets our data to be used in other functions
 async function fetchAPI(currentPage) {
-    console.log("from top of fetch " +currentPage);
 
   let searchInput = document.getElementById('search-input').value;
   const searchURL = `http://api.searchspring.net/api/search/search.json?siteId=scmq7n&q=${searchInput}&resultsFormat=native&page=${currentPage}`;
   const data = await fetch(searchURL)
     .then((response) => {
-        console.log('current page in await function' + currentPage)
 
         return response.json()})
     .catch((err) => console.log(`Error ${err}`));
 
   generateHTML(data.results);
-  console.log("from bottom of fetch " +currentPage);
 
   //set Our pagination data to var called pageState
   pageState = data.pagination;
@@ -89,14 +86,11 @@ function generateHTML(searchResults) {
 const select = document.getElementsByTagName('dropdownPages');
 
 function createPageNumbers() {
-    console.log("from create page function at the top " + currentPage);
   let generatePageNumbers = '';
   for (let i = 1; i <= pageState.totalPages; i++) {
     generatePageNumbers += 
     `<a class='page-numbers' href='#'>${i}</a>`
-    // `<option value="${i}">${i}</option> `
-    console.log("from create page function at the bottom " + currentPage);
-    ;
+    // `<option value="${i}">${i}</option> `;
 
   }
   select.innerHTML = generatePageNumbers;
@@ -106,15 +100,8 @@ function createPageNumbers() {
 
 //Main page forward/back button event firing
 function pageNumberClick(e) {
-    
-        currentPage = e.target.innerHTML;
-        console.log("current page after click " + currentPage)
-    
-         fetchAPI(currentPage);
-   
- 
-  
-
+    currentPage = e.target.innerHTML;
+    fetchAPI(currentPage);
 }
 
 function handlePageButtonClick(e) {
@@ -128,8 +115,6 @@ function handlePageButtonClick(e) {
 function pageClickForward() {
   if (currentPage < pageState.totalPages) {
     currentPage++;
-    console.log('page forward got fired')
-
     fetchAPI(currentPage);
   }
 }
@@ -137,7 +122,6 @@ function pageClickForward() {
 function pageClickBack() {
   if (currentPage !== 1) {
     currentPage--;
-    console.log('page bck got fired')
     fetchAPI(currentPage);
   }
 }
