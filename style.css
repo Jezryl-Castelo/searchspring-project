@@ -398,8 +398,9 @@ input[type='checkbox'] {
     color: var(--mint);
     font-weight: 500;
 }
-/*@media and (max-width: 736px) {
-    .nav-list {
+
+@media only and (max-width: 736px) {
+    .navbar {
         flex-direction: column;
     }
-}   */
+}  
