@@ -34,7 +34,7 @@ function search(e) {
 async function fetchAPI(currentPage) {
 
   let searchInput = document.getElementById('search-input').value;
-  const searchURL = `http://api.searchspring.net/api/search/search.json?siteId=scmq7n&q=${searchInput}&resultsFormat=native&page=${currentPage}`;
+  const searchURL = `https://api.searchspring.net/api/search/search.json?siteId=scmq7n&q=${searchInput}&resultsFormat=native&page=${currentPage}`;
   const data = await fetch(searchURL)
     .then((response) => {
 

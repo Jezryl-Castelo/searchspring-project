@@ -336,6 +336,7 @@ input[type='checkbox'] {
 .dropdown-text {
     display: flex;
     width: 90px;
+   
     border: 1px solid var(--dk-gray);
     font-size: 1rem;
     margin-bottom: 6px;
@@ -398,9 +399,8 @@ input[type='checkbox'] {
     color: var(--mint);
     font-weight: 500;
 }
-
-@media only and (max-width: 736px) {
-    .navbar {
+/*@media and (max-width: 736px) {
+    .nav-list {
         flex-direction: column;
     }
-}  
+}   */
