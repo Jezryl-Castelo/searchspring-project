@@ -64,7 +64,12 @@ function generateHTML(searchResults) {
     let salePrice = +price;
 
     generatedHTML += `<div class="card">
+        <div class="image-container">
             <img  class="card-image" src="${thumbnailImageUrl}" alt="result image">
+                <div class="quick-shop-btn"
+              <a href="#" class="card-btn">Quick Shop</a>
+                </div>
+        </div>
         <div class="details">
             <p class="product">${title}</p>
              ${
